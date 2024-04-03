@@ -2,15 +2,27 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    container: {
+      padding: {
+        DEFAULT: "1rem",
+        sm: "2rem",
+        lg: "4rem",
+        xl: "5rem",
+        "2xl": "6rem",
+      },
+    },
     extend: {
       colors: {
-        primary: "#194A33",
-        secondary: "#FAFAFA",
+        primary: "#F4E9E3",
+        secondary: "#7E8427",
+        success: "#C89374",
+        dark: "#000000",
+        light: "#FFFFFF",
       },
     },
     fontFamily: {
-      poppins: ["Poppins", "sans-serif"],
-      roboto: ["Roboto Flex", "sans-serif"],
+      lexend: ["Lexend", "sans-serif"],
+      hind: ["hind", "sans-serif"],
     },
   },
   plugins: [],

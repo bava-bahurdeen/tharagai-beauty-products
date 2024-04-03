@@ -1,93 +1,84 @@
-import { TfiWorld } from "react-icons/tfi";
-import { IoMdArrowDropdown } from "react-icons/io";
-import { FaBars } from "react-icons/fa";
-import { useState } from "react";
-import { FaOpencart } from "react-icons/fa";
+import React from "react";
+import logo from "../assets/images/logo/logo.png";
 import { Link } from "react-router-dom";
-import { FaBarsStaggered } from "react-icons/fa6";
-import { IoCloseOutline } from "react-icons/io5";
-function Header() {
-  const [dropdown, setDropdown] = useState(false);
+import { FaUser } from "react-icons/fa6";
+import { IoMenuSharp } from "react-icons/io5";
 
-  const items = [
-    { label: "Home" },
-    { label: "Products" },
-    { label: "Blogs" },
-    { label: "Contact" },
-    { label: "Pages" },
-  ];
+import { Badge } from "antd";
+import { ShoppingCartOutlined } from "@ant-design/icons";
 
-  const toggleMobileMenu = () => {
-    setDropdown(!dropdown);
-  };
+const linkList = [
+  {
+    id: 1,
+    pathUrl: "/",
+    pathName: "Home",
+  },
+  {
+    id: 2,
+    pathUrl: "/",
+    pathName: "Bath & Body",
+  },
+  {
+    id: 3,
+    pathUrl: "/",
+    pathName: "Hair Care",
+  },
+  {
+    id: 4,
+    pathUrl: "/",
+    pathName: "Skin Care",
+  },
+  {
+    id: 5,
+    pathUrl: "/",
+    pathName: "About Us",
+  },
+  {
+    id: 6,
+    pathUrl: "/",
+    pathName: "Contact",
+  },
+];
+
+export default function Header() {
   return (
-    <div>
-      <div
-        className={
-          dropdown
-            ? "bg-secondary z-[99] flex flex-col transition-all lg:hidden duration-300 gap-4 ps-2 fixed top-0 left-0 h-full w-[85%]"
-            : "'bg-[#3F6955] flex flex-col gap-4 z-[99] ps-2 fixed top-0 -left-full transition-all lg:hidden duration-300 h-full w-[85%]'"
-        }
-      >
-        <div className="mt-3 flex justify-end pe-5">
-          <IoCloseOutline onClick={toggleMobileMenu} className="text-2xl" />
-        </div>
-        <div className="mt-3">
-          <ul className="flex flex-col ps-4 gap-4 ">
-            {items.map((item, index) => {
-              return (
-                <li
-                  className="font-poppins text-gray-700 hover:text-primary font-light text-sm"
-                  key={index}
-                >
-                  {item.label}
-                </li>
-              );
-            })}
-          </ul>
-        </div>
+    <header className="container mx-auto flex justify-between items-center py-4 bg-white  sticky top-0  data-[sticked='true']:shadow z-[2] ">
+      <div>
+        <img src={logo} alt="thargai-logo" />
       </div>
-      <div className="bg-primary  py-5   flex justify-between px-4   items-center">
-        <FaBarsStaggered
-          onClick={toggleMobileMenu}
-          className="text-3xl text-secondary lg:hidden"
-        />
-        <div>
-          <h1 className="font-roboto text-4xl text-secondary ">Thaaragai</h1>
-        </div>
-        <div className="hidden lg:flex">
-          <div className="w-[600px] h-[44px] rounded-l bg-white ps-4 flex items-center justify-center">
-            <input
-              type="search"
-              placeholder="What are you looking for ?"
-              className="bg-transparent w-full  outline-none border-none"
-            />
-          </div>
-          <button className="px-6 h-[44px] bg-[#678d37] text-secondary rounded-r ">
-            SEARCH
-          </button>
-        </div>
-        <div className="flex gap-2">
-          <FaOpencart className="text-3xl cursor-pointer text-secondary" />
-          <p className=" font-poppins text-secondary">(0)</p>
-        </div>
+
+      <div className="lg:hidden">
+        <button className="bg-secondary text-light p-2 text-xl">
+          <IoMenuSharp />
+        </button>
       </div>
-      <hr className=" border-gray-400 hidden lg:block" />
-      <div className="bg-primary p-4 hidden lg:block">
-        <div className="hidden lg:block">
-          <ul className="flex gap-8">
-            {items.map((item, index) => {
-              return (
-                <li className="font-poppins text-secondary  " key={index}>
-                  <Link to={item.path}>{item.label}</Link>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
+
+      <div className="hidden lg:flex lg:gap-4 xl:gap-10">
+        {linkList.map((urls) => {
+          return (
+            <Link
+              to={urls.pathUrl}
+              key={urls.id}
+              className="font-hind font-medium uppercase hover:text-secondary"
+            >
+              {urls.pathName}
+            </Link>
+          );
+        })}
       </div>
-    </div>
+
+      <div className="hidden lg:flex lg:items-center lg:justify-center lg:gap-2 h-full ">
+        <FaUser className="text-success h-5 w-5 font-bold" />
+        <p className="font-hind font-semibold text-secondary mt-2">$0.00</p>
+        <Badge
+          size="small"
+          count={2}
+          className="font-hind font-extrabold text-xl mt-2"
+          style={{ backgroundColor: "#7E8427" }}
+        >
+          <ShoppingCartOutlined className="font-hind font-extrabold text-secondary" />
+        </Badge>
+      </div>
+    </header>
   );
 }
-
-export default Header;
