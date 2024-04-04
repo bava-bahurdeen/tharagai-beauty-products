@@ -18,6 +18,8 @@ export default {
         success: "#C89374",
         dark: "#000000",
         light: "#FFFFFF",
+        light_gray:"#777777",
+        dark_gray:"#4d4d4d"
       },
     },
     fontFamily: {

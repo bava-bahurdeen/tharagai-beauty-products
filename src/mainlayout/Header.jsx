@@ -42,7 +42,7 @@ const linkList = [
 
 export default function Header() {
   return (
-    <header className="container mx-auto flex justify-between items-center py-4 bg-white  sticky top-0  data-[sticked='true']:shadow z-[2] ">
+    <header className="container mx-auto  flex justify-between items-center py-4 bg-white  sticky top-0  data-[sticked='true']:shadow z-[2] ">
       <div>
         <img src={logo} alt="thargai-logo" />
       </div>
