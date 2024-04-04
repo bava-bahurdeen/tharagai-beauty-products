@@ -6,7 +6,7 @@ import leafBg from "../../assets/images/bg/bgLeaf.png";
 export default function Hero() {
   return (
     <section
-      className="relative bg-cover bg-center bg-no-repeat w-full h-[56vh] lg:h-[86vh]"
+      className=" relative bg-cover bg-center bg-no-repeat w-full h-[56vh] lg:h-[86vh]"
       style={{ backgroundImage: `url(${bg1})` }}
     >
       <div
@@ -19,8 +19,8 @@ export default function Hero() {
       ></div>
 
       <div className="h-full w-full flex justify-end pr-2 lg:pr-44 items-center absolute top-0">
-        <div className="lg:w-[44%] text-end">
-          <h4 className="font-medium text-white">New Arrival</h4>
+        <div className="lg:w-[44%] text-center lg:text-end">
+          <h4 className="font-medium text-white ">New Arrival</h4>
           <h1 className="font-semibold text-3xl lg:text-5xl text-light mt-5 lg:leading-[70px]">
             Nourish delicate skin & hair package
           </h1>

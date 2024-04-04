@@ -34,12 +34,19 @@ export default function Ingredients() {
         We use only natural ingredients for our products, which are good for you
         and the environment too.
       </h1>
-      <div className="grid grid-cols-2 md:grid-cols-4  gap-6 mt-6 col-span-2 ">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-6 col-span-2 ">
         {ingredientsList.map((ingredient) => {
           return (
-            <div key={ingredient.id}>
-              <img src={ingredient.img} alt={ingredient.name} />
-              <p className="font-medium mt-5 text-gray-600">
+            <div
+              key={ingredient.id}
+              className="flex justify-center items-center flex-col"
+            >
+              <img
+                src={ingredient.img}
+                alt={ingredient.name}
+                className="w-[50%]"
+              />
+              <p className="font-medium mt-5 text-gray-600 w-full text-center">
                 {ingredient.name}
               </p>
             </div>

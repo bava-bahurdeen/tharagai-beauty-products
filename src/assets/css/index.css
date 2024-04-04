@@ -8,10 +8,9 @@
 :root {
   --hind: "Hind", sans-serif;
   --lexend: "Lexend", sans-serif;
+  --primary: #f4e9e3;
 }
 
 * {
   font-family: var(--lexend);
 }
-
-
