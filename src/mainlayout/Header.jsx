@@ -42,11 +42,10 @@ const linkList = [
 
 export default function Header() {
   return (
-    <header className="w-full  bg-white  sticky top-0  data-[sticked='true']:shadow z-[2] ">
-      <div className="container mx-auto flex justify-between items-center py-4">
-        <div>
-          <img src={logo} alt="thargai-logo" />
-        </div>
+    <header className="container mx-auto flex justify-between items-center py-4 bg-white  sticky top-0  data-[sticked='true']:shadow z-[2] ">
+      <div>
+        <img src={logo} alt="thargai-logo" />
+      </div>
 
         <div className="lg:hidden">
           <button className="bg-secondary text-light p-2 text-xl">
@@ -80,7 +79,6 @@ export default function Header() {
             <ShoppingCartOutlined className="font-hind font-extrabold text-secondary" />
           </Badge>
         </div>
-      </div>
     </header>
   );
 }
