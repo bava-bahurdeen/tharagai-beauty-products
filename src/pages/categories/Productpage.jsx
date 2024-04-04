@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import p1 from "../../assets/images/products/P1.png";
+import { product } from "../../assets/data";
 export default function Productpage() {
     const [toggle,Settoggle]=useState(1)
   
@@ -43,7 +44,7 @@ export default function Productpage() {
                 <input
                   type="number"
                   className="max-w-full border-2 border-b p-3 text-dark_gray  w-[54px] h-[35px]"
-                  value='1'
+                  
                 />
                 <button className="bg-secondary w-[230px] h-[34px]">
                   Add To Cart
@@ -85,8 +86,21 @@ export default function Productpage() {
               nisi culpa ipsam atque totam consequuntur!
             </p>
           </div>
-          <div className="flex mt-10">
+          <div>
+         
 <h1 className="font-lexend text-[40px] font-medium">Related products</h1>
+       {product.map((items)=>{
+        <div key={items.id} className="flex">
+            <img src={items.image} alt="product" />
+            <h1>{items.category}</h1>
+            <h1>{items.title}</h1>
+           <div className="flex">
+            <p>{items.price[0]}</p>
+            <p>{items.price[1]}</p>
+           </div>
+                   </div>
+       })}
+
           </div>
         </section>
       </div>
