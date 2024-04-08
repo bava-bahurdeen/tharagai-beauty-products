@@ -13,6 +13,7 @@ export const product = [
       image: P1,
       category: "Bath & Body",
       title : "Avocado extract shower gel",
+      url:"/product-detail/productname",
       price:
         {
           oldprice: 16.25,
@@ -25,6 +26,7 @@ export const product = [
       image: P2,
       category: "Bath & Body",
       title : "Body oil anti-cellulite",
+      url:"/product-detail/productname",
       price:
         {
           newPrice: 13.25
@@ -36,6 +38,7 @@ export const product = [
       image: P3,
       category: "Bath & Body",
       title : "Hair repair shampoo",
+      url:"/product-detail/productname",
       price:
         {
           oldprice: 16.25,
@@ -48,6 +51,7 @@ export const product = [
       image: P4,
       category: "Bath & Body",
       title : "Moisturizing conditioner",
+      url:"/product-detail/productname",
       price:
         {
           newPrice: 15.50
@@ -59,6 +63,7 @@ export const product = [
       image: P5,
       category: "Bath & Body",
       title : "Phytoactive hydra-firm mask",
+      url:"/product-detail/productname",
       price:
         {
           newPrice: 19.50
@@ -70,6 +75,7 @@ export const product = [
       image: P6,
       category: "Bath & Body",
       title : "Rapid response detox mask",
+      url:"/product-detail/productname",
       price:
         {
           oldprice: 16.25,
@@ -82,6 +88,7 @@ export const product = [
       image: P7,
       category: "Bath & Body",
       title : "Replumping hair conditioner",
+      url:"/product-detail/productname",
       price:
         {
           oldprice: 16.25,
@@ -94,6 +101,7 @@ export const product = [
       image: P8,
       category: "Bath & Body",
       title : "Tropical rehab shampoo",
+      url:"/product-detail/productname",
       price:
         {
           newPrice: 14.90

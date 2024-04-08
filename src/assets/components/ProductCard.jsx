@@ -1,11 +1,12 @@
 import React from "react";
 import { FaShoppingCart } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function ProductCard({ i }) {
-  const { id, image, title, category, price } = i;
+  const { id, image, title, category, price, url } = i;
 
   return (
-    <div className="relative group">
+    <Link to={url} className="relative group">
       <img src={image} alt={title} className="w-[290px] rounded-sm" />
       <div className="mt-5 ">
         <p className="text-xs text-black/40">{category}</p>
@@ -20,7 +21,7 @@ function ProductCard({ i }) {
           <FaShoppingCart />
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 

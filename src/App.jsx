@@ -19,7 +19,7 @@ function App() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/categories" element={<ProductCategories />} />
-          <Route path="/product-detail" element={<ProductDetails />} />
+          <Route path="/product-detail/:productname" element={<ProductDetails />} />
         </Routes>
 
         <Footer />
