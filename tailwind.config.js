@@ -26,6 +26,7 @@ export default {
       lexend: ["Lexend", "sans-serif"],
       hind: ["hind", "sans-serif"],
     },
+  
   },
   plugins: [],
 };

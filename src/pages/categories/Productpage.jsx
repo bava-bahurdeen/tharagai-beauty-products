@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import p1 from "../../assets/images/products/P1.png";
 import { product } from "../../assets/data";
+import { Each } from "../../utils/Each";
 export default function Productpage() {
     const [toggle,Settoggle]=useState(1)
-  
+    
+    
+
   return (
     <>
-      <div className="bg-primary p-12">
-        <section className="container mx-auto w-[1200px] h-[1340px] bg-white px-16 py-10  ">
+      <div className="bg-primary  md:p-12 overflow-hidden">
+        <section className="container mx-auto w-full h-full  md:px-32 md:py-20 lg:w-[1200px] lg:h-[1340px] bg-white lg:px-16 lg:py-10    ">
           {/* products details */}
-          <div className="flex gap-10">
+          <div className="  flex flex-col gap-10 lg:flex-row">
             <div>
               <img
                 src={p1}
@@ -24,7 +27,7 @@ export default function Productpage() {
               <h1 className="text-sm font-hind text-[15px] text-dark_gray">
                 Bath & Body, Hair Care
               </h1>
-              <h1 className="text-[24px] font-normal font-lexend">
+              <h1 className="text-[20px] sm:text-[24px] font-normal font-lexend">
                 Avocado extract shower gel
               </h1>
               <div className="flex items-center">
@@ -40,13 +43,13 @@ export default function Productpage() {
                   Ut enim ad minim.
                 </h1>
               </div>
-              <div className="flex items-center gap-3 mt-5 border-b-2 border-black/20 pb-5">
+              <div className="flex items-center gap-3 mt-10 sm:mt-5 border-b-2 border-black/20 pb-5">
                 <input
                   type="number"
                   className="max-w-full border-2 border-b p-3 text-dark_gray  w-[54px] h-[35px]"
                   
                 />
-                <button className="bg-secondary w-[230px] h-[34px]">
+                <button className="bg-secondary text-light w-[230px] h-[34px]">
                   Add To Cart
                 </button>
               </div>
@@ -62,9 +65,9 @@ export default function Productpage() {
           </div>
           {/* tab section */}
           <div className="flex gap-5">
-            <button onClick={()=>{Settoggle(1)}} className={toggle==1?"border-b-2 border-black ":"border-none"}>Description</button>
-            <button onClick={()=>{Settoggle(2)}} className={toggle==2?"border-b-2 border-black ":"border-none"}>Addition Information</button>
-            <button onClick={()=>{Settoggle(3)}} className={toggle==3?"border-b-2 border-black ":"border-none"}>Reviews</button>
+            <button onClick={()=>{Settoggle(1)}} className={toggle==1?"border-b-2 border-black text-[13px] sm:text-[18px] ":"border-none"}>Description</button>
+            <button onClick={()=>{Settoggle(2)}} className={toggle==2?"border-b-2 border-black text-[13px] sm:text-[18px]":"border-none"}>Addition Information</button>
+            <button onClick={()=>{Settoggle(3)}} className={toggle==3?"border-b-2 border-black text-[13px] sm:text-[18px] ":"border-none"}>Reviews</button>
           </div>
           <div>
             <p className={toggle===1?"block font-[15px] mt-8 text-sm text-dark ":"hidden"} >
@@ -88,18 +91,17 @@ export default function Productpage() {
           </div>
           <div>
          
-<h1 className="font-lexend text-[40px] font-medium">Related products</h1>
-       {product.map((items)=>{
-        <div key={items.id} className="flex">
-            <img src={items.image} alt="product" />
-            <h1>{items.category}</h1>
-            <h1>{items.title}</h1>
-           <div className="flex">
-            <p>{items.price[0]}</p>
-            <p>{items.price[1]}</p>
-           </div>
-                   </div>
-       })}
+<h1 className="font-lexend text-[40px] font-medium mt-10">Related products</h1>
+     <Each of={product} render={(item,index)=>{
+      
+      return(
+        <div key={index}>
+<img src={item.image} alt="product" />
+        </div>
+      )
+     }}/>
+
+   
 
           </div>
         </section>
