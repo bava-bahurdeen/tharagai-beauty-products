@@ -18,3 +18,7 @@
 body {
   background-color: var(--primary);
 }
+
+p{
+  color: #000000B3;
+}

@@ -18,6 +18,7 @@ export default {
         success: "#C89374",
         dark: "#000000",
         light: "#FFFFFF",
+        borderLine:"#CCC2BE"
       },
     },
     fontFamily: {
