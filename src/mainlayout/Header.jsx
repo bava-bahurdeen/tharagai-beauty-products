@@ -15,7 +15,7 @@ const linkList = [
   },
   {
     id: 2,
-    pathUrl: "/bath&body",
+    pathUrl: "/categories",
     pathName: "Bath & Body",
   },
   {

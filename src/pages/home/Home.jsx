@@ -3,6 +3,9 @@ import Hero from "./Hero";
 import Ingredients from "./Ingredients";
 import BestSeller from "./BestSeller";
 import Categories from "./Categories";
+import Favorite from "./Favorite";
+import Testimonials from "./Testimonials";
+import QuestinBottom from "../../assets/components/QuestinBottom";
 
 export default function Home() {
   return (
@@ -11,6 +14,9 @@ export default function Home() {
       <Ingredients />
       <BestSeller />
       <Categories />
+      <Favorite />
+      <Testimonials />
+      <QuestinBottom />
     </main>
   );
 }
