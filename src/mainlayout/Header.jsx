@@ -15,7 +15,7 @@ const linkList = [
   },
   {
     id: 2,
-    pathUrl: "/bath&body",
+    pathUrl: "/categories",
     pathName: "Bath & Body",
   },
   {
@@ -42,44 +42,42 @@ const linkList = [
 
 export default function Header() {
   return (
-    <header className="w-full  bg-white  sticky top-0  data-[sticked='true']:shadow z-[2] ">
-      <div className="container mx-auto flex justify-between items-center py-4">
-        <div>
-          <img src={logo} alt="thargai-logo" />
-        </div>
+    <header className="container mx-auto flex justify-between items-center py-4 bg-white  sticky top-0  data-[sticked='true']:shadow z-[2] ">
+      <div>
+        <img src={logo} alt="thargai-logo" />
+      </div>
 
-        <div className="lg:hidden">
-          <button className="bg-secondary text-light p-2 text-xl">
-            <IoMenuSharp />
-          </button>
-        </div>
+      <div className="lg:hidden">
+        <button className="bg-secondary text-light p-2 text-xl">
+          <IoMenuSharp />
+        </button>
+      </div>
 
-        <div className="hidden lg:flex lg:gap-4 xl:gap-10">
-          {linkList.map((urls) => {
-            return (
-              <Link
-                to={urls.pathUrl}
-                key={urls.id}
-                className="font-hind font-medium uppercase hover:text-secondary"
-              >
-                {urls.pathName}
-              </Link>
-            );
-          })}
-        </div>
+      <div className="hidden lg:flex lg:gap-4 xl:gap-10">
+        {linkList.map((urls) => {
+          return (
+            <Link
+              to={urls.pathUrl}
+              key={urls.id}
+              className="font-hind font-medium uppercase hover:text-secondary"
+            >
+              {urls.pathName}
+            </Link>
+          );
+        })}
+      </div>
 
-        <div className="hidden lg:flex lg:items-center lg:justify-center lg:gap-2 h-full ">
-          <FaUser className="text-success h-5 w-5 font-bold" />
-          <p className="font-hind font-semibold text-secondary mt-2">$0.00</p>
-          <Badge
-            size="small"
-            count={2}
-            className="font-hind font-extrabold text-xl mt-2"
-            style={{ backgroundColor: "#7E8427" }}
-          >
-            <ShoppingCartOutlined className="font-hind font-extrabold text-secondary" />
-          </Badge>
-        </div>
+      <div className="hidden lg:flex lg:items-center lg:justify-center lg:gap-2 h-full ">
+        <FaUser className="text-success h-5 w-5 font-bold" />
+        <p className="font-hind font-semibold text-secondary mt-2">$0.00</p>
+        <Badge
+          size="small"
+          count={2}
+          className="font-hind font-extrabold text-xl mt-2"
+          style={{ backgroundColor: "#7E8427" }}
+        >
+          <ShoppingCartOutlined className="font-hind font-extrabold text-secondary" />
+        </Badge>
       </div>
     </header>
   );

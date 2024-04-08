@@ -14,11 +14,10 @@
 * {
   font-family: var(--lexend);
 }
-
 body {
   background-color: var(--primary);
 }
 
-p{
-  color: #000000B3;
+p {
+  color: #000000b3;
 }

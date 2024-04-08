@@ -5,7 +5,9 @@ import Home from "./pages/home/Home";
 import About from "./pages/about/About";
 import Blog from "./pages/blog/Blog";
 import Contact from "./pages/contact/Contact";
-import BathAndBodies from "./pages/categories/BathAndBodies";
+import ProductCategories from "./pages/categories/ProductCategories";
+import ProductDetails from "./pages/categories/ProductDetails";
+
 function App() {
   return (
     <div>
@@ -16,7 +18,8 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/bath&body" element={<BathAndBodies/>}/>
+          <Route path="/categories" element={<ProductCategories />} />
+          <Route path="/product-detail" element={<ProductDetails />} />
         </Routes>
 
         <Footer />
