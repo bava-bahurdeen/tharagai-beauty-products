@@ -30,7 +30,7 @@ const linkList = [
   },
   {
     id: 5,
-    pathUrl: "/",
+    pathUrl: "/about",
     pathName: "About Us",
   },
   {

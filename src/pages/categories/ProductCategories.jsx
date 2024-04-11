@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { product } from "../../assets/data";
 import ProductCard from "../../assets/components/ProductCard";
 import QuestinBottom from "../../assets/components/QuestinBottom";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 function BathAndBodies() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_LOCAL_URL}tharagai/products/`)
+      .then((response) => {
+        console.log(response.data);
+        setProducts(response.data);
+      })
+      .catch((error) => {
+        console.log("The error is IS : ", error);
+      });
+  }, []);
+
   return (
     <>
       <section className="bg-primary">
@@ -35,8 +51,12 @@ function BathAndBodies() {
             </select>
           </div>
           <div className="mt-14 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
-            {product.map((i) => {
-              return <ProductCard i={i} key={i.id} />;
+            {products.map((i) => {
+              return (
+                <Link to={`/product-detail/${i.id}`} className="relative group " key={i.id}>
+                  <ProductCard i={i} />
+                </Link>
+              );
             })}
           </div>
         </div>

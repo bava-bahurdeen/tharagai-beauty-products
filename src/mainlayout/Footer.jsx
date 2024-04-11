@@ -138,7 +138,7 @@ export default function Footer() {
           <ul className="flex gap-4 mt-5">
             {socialList.map((social) => {
               return (
-                <li>
+                <li key={social.id}>
                   <a
                     href=""
                     className="font-hind text-xl text-secondary hover:text-success"
