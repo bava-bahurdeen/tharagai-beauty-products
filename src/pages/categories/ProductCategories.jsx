@@ -1,24 +1,34 @@
 import React, { useEffect, useState } from "react";
-import { product } from "../../assets/data";
+// import { product } from "../../assets/data";
 import ProductCard from "../../assets/components/ProductCard";
 import QuestinBottom from "../../assets/components/QuestinBottom";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { getProducts } from "../../store/thunks/productThunk";
+import { useDispatch, useSelector } from "react-redux";
 
 function BathAndBodies() {
-  const [products, setProducts] = useState([]);
+  // const [products, setProducts] = useState([]);
+
+  // useEffect(() => {
+  //   axios
+  //     .get(`${import.meta.env.VITE_LOCAL_URL}tharagai/products/`)
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       setProducts(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log("The error is IS : ", error);
+  //     });
+  // }, []);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_LOCAL_URL}tharagai/products/`)
-      .then((response) => {
-        console.log(response.data);
-        setProducts(response.data);
-      })
-      .catch((error) => {
-        console.log("The error is IS : ", error);
-      });
-  }, []);
+    dispatch(getProducts());
+  }, [dispatch]);
+
+  const products = useSelector((state) => state.products);
 
   return (
     <>
@@ -53,7 +63,11 @@ function BathAndBodies() {
           <div className="mt-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
             {products.map((i) => {
               return (
-                <Link to={`/product-detail/${i.id}`} className="relative group rounded" key={i.id}>
+                <Link
+                  to={`/product-detail/${i.id}`}
+                  className="relative group rounded"
+                  key={i.id}
+                >
                   <ProductCard i={i} />
                 </Link>
               );

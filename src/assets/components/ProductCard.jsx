@@ -1,10 +1,9 @@
 import React from "react";
 import { FaShoppingCart } from "react-icons/fa";
-import { Link } from "react-router-dom";
+
 
 function ProductCard({ i }) {
   const variation = i?.variations[0];
-  console.log(variation);
 
   return (
     <>
