@@ -4,12 +4,13 @@ import { FaShoppingCart } from "react-icons/fa";
 
 function ProductCard({ i }) {
   const variation = i?.variations[0];
+  console.log("The image path is :",`${import.meta.env.VITE_LOCAL_IMAGE_URL}${i?.image}`);
 
   return (
     <>
       <div className="w-[100%] bg-white rounded flex items-center justify-center">
         <img
-          src={`${import.meta.env.VITE_LOCAL_URL}${i?.image}`}
+          src={`${import.meta.env.VITE_LOCAL_IMAGE_URL}${i?.image}`}
           alt={i?.name}
           className="size-[300px] object-contain"
         />
