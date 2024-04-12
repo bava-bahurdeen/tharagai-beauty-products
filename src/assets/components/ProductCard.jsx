@@ -8,7 +8,7 @@ function ProductCard({ i }) {
 
   return (
     <>
-      <div className="p-4 bg-white">
+      <div className="p-4 bg-white rounded">
         <img
           src={`${import.meta.env.VITE_LOCAL_URL}${i?.image}`}
           alt={i?.name}

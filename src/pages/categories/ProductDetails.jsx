@@ -1,7 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import p1 from "../../assets/images/products/P1.png";
-import { product } from "../../assets/data";
+
+import { useParams } from "react-router-dom";
+import axios from "axios";
+
 export default function Productpage() {
+  let { productId } = useParams();
+
+  const [product,setProduct] = useState({})
+
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_LOCAL_URL}tharagai/products/${productId}/`)
+      .then((response) => {
+        console.log(response.data);
+        setProduct(response.data);
+      })
+      .catch((error) => {
+        console.log("The error is IS : ", error);
+      });
+  }, []);
+
+
   const [toggle, Settoggle] = useState(1);
 
   return (
@@ -134,7 +154,7 @@ export default function Productpage() {
             <h1 className="font-lexend  mt-8  sm:mt-6 sm:text-[40px] text-[20px]  font-medium">
               Related products
             </h1>
-            {product.map((items) => {
+            {/* {product.map((items) => {
               <div key={items.id} className="flex">
                 <img src={items.image} alt="product" />
                 <h1>{items.category}</h1>
@@ -144,7 +164,7 @@ export default function Productpage() {
                   <p>{items.price[1]}</p>
                 </div>
               </div>;
-            })}
+            })} */}
           </div>
         </section>
       </div>

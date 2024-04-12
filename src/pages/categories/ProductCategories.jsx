@@ -53,7 +53,7 @@ function BathAndBodies() {
           <div className="mt-14 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
             {products.map((i) => {
               return (
-                <Link to={`/product-detail/${i.id}`} className="relative group " key={i.id}>
+                <Link to={`/product-detail/${i.id}`} className="relative group rounded" key={i.id}>
                   <ProductCard i={i} />
                 </Link>
               );
