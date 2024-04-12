@@ -50,7 +50,7 @@ function BathAndBodies() {
               <option value="">Sort by Price: High to low</option>
             </select>
           </div>
-          <div className="mt-14 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+          <div className="mt-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
             {products.map((i) => {
               return (
                 <Link to={`/product-detail/${i.id}`} className="relative group rounded" key={i.id}>

@@ -8,11 +8,11 @@ function ProductCard({ i }) {
 
   return (
     <>
-      <div className="p-4 bg-white rounded">
+      <div className="w-[100%] bg-white rounded flex items-center justify-center">
         <img
           src={`${import.meta.env.VITE_LOCAL_URL}${i?.image}`}
           alt={i?.name}
-          className="w-[290px] rounded-sm"
+          className="size-[300px] object-contain"
         />
       </div>
       <div className="mt-5 ">

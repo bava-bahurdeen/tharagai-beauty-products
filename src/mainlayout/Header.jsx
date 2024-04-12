@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../assets/images/logo/logo.png";
 import { Link } from "react-router-dom";
 import { FaUser } from "react-icons/fa6";
@@ -6,6 +6,7 @@ import { IoMenuSharp } from "react-icons/io5";
 
 import { Badge } from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
+import { IoClose } from "react-icons/io5";
 
 const linkList = [
   {
@@ -41,6 +42,8 @@ const linkList = [
 ];
 
 export default function Header() {
+  const [leftNav, setLeftnav] = useState(false);
+
   return (
     <header className="bg-white w-full  sticky top-0  data-[sticked='true']:shadow z-[2]">
       <section className="container mx-auto flex justify-between items-center py-4  ">
@@ -49,7 +52,10 @@ export default function Header() {
         </div>
 
         <div className="lg:hidden">
-          <button className="bg-secondary text-light p-2 text-xl">
+          <button
+            className="bg-secondary text-light p-2 text-xl"
+            onClick={() => setLeftnav(!leftNav)}
+          >
             <IoMenuSharp />
           </button>
         </div>
@@ -81,6 +87,32 @@ export default function Header() {
           </Badge>
         </div>
       </section>
+
+      {leftNav && (
+        <section className="h-screen w-full  lg:hidden absolute top-0 bg-white ">
+          <div className="text-2xl text-secondary w-full flex justify-end p-5">
+            <IoClose
+              onClick={() => setLeftnav(!leftNav)}
+              className="cursor-pointer"
+            />
+          </div>
+
+          <div className="flex flex-col gap-10">
+            {linkList.map((urls) => {
+              return (
+                <Link
+                  onClick={() => setLeftnav(!leftNav)}
+                  to={urls.pathUrl}
+                  key={urls.id}
+                  className="font-hind font-medium uppercase hover:text-secondary border-b px-2"
+                >
+                  {urls.pathName}
+                </Link>
+              );
+            })}
+          </div>
+        </section>
+      )}
     </header>
   );
 }
