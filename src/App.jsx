@@ -7,8 +7,17 @@ import Blog from "./pages/blog/Blog";
 import Contact from "./pages/contact/Contact";
 import ProductCategories from "./pages/categories/ProductCategories";
 import ProductDetails from "./pages/categories/ProductDetails";
+import { useDispatch } from "react-redux";
+import { getProducts } from "./store/thunks/productThunk";
+import { useEffect } from "react";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getProducts());
+  }, [dispatch]);
+
   return (
     <div>
       <BrowserRouter>
@@ -19,7 +28,10 @@ function App() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/categories" element={<ProductCategories />} />
-          <Route path="/product-detail/:productId" element={<ProductDetails />} />
+          <Route
+            path="/product-detail/:productId"
+            element={<ProductDetails />}
+          />
         </Routes>
 
         <Footer />

@@ -4,7 +4,6 @@ import { FaShoppingCart } from "react-icons/fa";
 
 function ProductCard({ i }) {
   const variation = i?.variations[0];
-  console.log("The image path is :",`${import.meta.env.VITE_LOCAL_IMAGE_URL}${i?.image}`);
 
   return (
     <>

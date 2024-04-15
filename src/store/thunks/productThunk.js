@@ -17,3 +17,19 @@ export const getProducts = createAsyncThunk(
     }
   }
 );
+
+export const getSingleProducts = createAsyncThunk(
+  "singleProduct/get",
+  async (id, { dispatch }) => {
+    try {
+      dispatch(setLoading(true));
+      const res = await productsService.getSingleProducts(id);
+      return res.data;
+    } catch (error) {
+      dispatch(setError(error.message));
+      throw error;
+    } finally {
+      dispatch(setLoading(false));
+    }
+  }
+);

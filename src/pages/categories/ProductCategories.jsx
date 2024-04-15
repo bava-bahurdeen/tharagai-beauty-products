@@ -2,42 +2,23 @@ import React, { useEffect, useState } from "react";
 // import { product } from "../../assets/data";
 import ProductCard from "../../assets/components/ProductCard";
 import QuestinBottom from "../../assets/components/QuestinBottom";
-import axios from "axios";
+
 import { Link } from "react-router-dom";
 import { getProducts } from "../../store/thunks/productThunk";
 import { useDispatch, useSelector } from "react-redux";
 
 function BathAndBodies() {
-  // const [products, setProducts] = useState([]);
 
-  // useEffect(() => {
-  //   axios
-  //     .get(`${import.meta.env.VITE_LOCAL_URL}tharagai/products/`)
-  //     .then((response) => {
-  //       console.log(response.data);
-  //       setProducts(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log("The error is IS : ", error);
-  //     });
-  // }, []);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getProducts());
-  }, [dispatch]);
-
-  const products = useSelector((state) => state.products);
+  const products = useSelector((state) => state.products.products);
 
   return (
     <>
       <section className="bg-primary">
-        <div className="container mx-auto pt-10 pb-10">
+        <div className="container mx-auto pt-10 pb-4">
           <p className="text-black/40 text-xs">Home / Bath & Body</p>
-          <div className="mt-8">
+          <div className="mt-1">
             <h1 className="text-5xl">Bath & Body </h1>
-            <p className="mt-14 text-sm font-light">
+            <p className="mt-4 text-sm font-light">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam, quis nostrud exercitation ullamco laboris
@@ -46,7 +27,7 @@ function BathAndBodies() {
               officia deserunt.
             </p>
           </div>
-          <div className="mt-14 text-sm font-light md:flex  justify-between">
+          <div className="mt-6 text-sm font-light md:flex  justify-between">
             <h6 className="font-light">Showing all results</h6>
             <select
               name="Sorting"
