@@ -10,6 +10,12 @@ import ProductDetails from "./pages/categories/ProductDetails";
 import { useDispatch } from "react-redux";
 import { getProducts } from "./store/thunks/productThunk";
 import { useEffect } from "react";
+import Login from "./pages/admin/login/Login";
+import SignUp from "./pages/admin/login/SignUp";
+import Dashboard from "./pages/admin/dashboard/Dashboard";
+import MainDashBoard from "./pages/admin/dashboard/MainDashBoard";
+import Order from "./pages/admin/dashboard/order/Order";
+import NewProductFunct from "./pages/admin/dashboard/newProduct/NewProductFunct";
 
 function App() {
   const dispatch = useDispatch();
@@ -17,24 +23,40 @@ function App() {
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
+  const UserPages = () => (
+    <div>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/categories" element={<ProductCategories />} />
+        <Route path="/product-detail/:productId" element={<ProductDetails />} />
+      </Routes>
 
+      <Footer />
+    </div>
+  );
+
+  const AdminRoutes = () => (
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="signup" element={<SignUp />} />
+      <Route path="dashboard" element={<Dashboard/>}>
+        <Route path="" element={<MainDashBoard />} />
+        <Route path="order" element={<Order />} />
+        <Route path="newproduct" element={<NewProductFunct/>} />
+      </Route>
+    </Routes>
+  );
   return (
     <div>
       <BrowserRouter>
-        <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/categories" element={<ProductCategories />} />
-          <Route
-            path="/product-detail/:productId"
-            element={<ProductDetails />}
-          />
+          <Route path="/*" element={<UserPages />} />
+          <Route path="admin/*" element={<AdminRoutes />} />
         </Routes>
-
-        <Footer />
       </BrowserRouter>
     </div>
   );
