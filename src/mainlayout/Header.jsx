@@ -22,12 +22,12 @@ const linkList = [
   },
   {
     id: 3,
-    pathUrl: "/",
+    pathUrl: "/categories",
     pathName: "Hair Care",
   },
   {
     id: 4,
-    pathUrl: "/",
+    pathUrl: "/categories",
     pathName: "Skin Care",
   },
   {
@@ -37,7 +37,7 @@ const linkList = [
   },
   {
     id: 6,
-    pathUrl: "/",
+    pathUrl: "/contact",
     pathName: "Contact",
   },
 ];
@@ -92,9 +92,7 @@ export default function Header() {
             >
               <ShoppingCartOutlined className="font-hind font-extrabold text-secondary" />
             </Badge>
-            <p className="font-hind font-semibold text-secondary mt-1">
-              Cart
-            </p>
+            <p className="font-hind font-semibold text-secondary mt-1">Cart</p>
           </Link>
         </div>
       </section>
