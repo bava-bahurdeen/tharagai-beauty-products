@@ -30,20 +30,18 @@ export default function ProductDetailsBottom() {
         />
         <TabButton
           activeTab={activeTab}
-          tabName={"review"}
+          tabName={"howtoUse"}
           handleTabChange={handleTabChange}
-          lblName="Reviews"
+          lblName="How To Use "
         />
       </div>
 
       {activeTab === "description" && <ProductDescription />}
       {activeTab === "benefits" && <ProductBenifits />}
-      {activeTab === "review" && <Reviews />}
-      <Howtouse />
-      {activeTab !== "review" && <Reviews />}
+      {activeTab === "howtoUse" && <Howtouse />}
+      <br />
+      <Reviews />
 
-
-      
       <RelatedProduct />
     </div>
   );

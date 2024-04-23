@@ -37,7 +37,8 @@ export default function Reviews() {
 
       <div className="p-6 border mt-5">
         <h1 className="font-hind text-xl ">
-          Be the first to review <span className="text-secondary font-bold">“{product.name}”</span>
+          Be the first to review{" "}
+          <span className="text-secondary font-bold">“{product.name}”</span>
         </h1>
         <p className="font-hind text-sm mt-1">
           Your email address will not be published. Required fields are marked *
@@ -120,7 +121,9 @@ export default function Reviews() {
             />
           </div>
         </div>
-        <Button lblName="Submit" />
+        <div className="mt-5 flex lg:w-[20%]">
+          <Button lblName="Submit" />
+        </div>
       </div>
     </section>
   );

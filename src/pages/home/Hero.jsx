@@ -1,13 +1,14 @@
 import React from "react";
 
 import bg1 from "../../assets/images/hero/bg-01-free-img.jpg";
+import bg2 from "../../assets/images/hero/hero.png";
 import leafBg from "../../assets/images/bg/bgLeaf.png";
 
 export default function Hero() {
   return (
     <section
       className=" relative bg-cover bg-center bg-no-repeat w-full h-[56vh] lg:h-[86vh]"
-      style={{ backgroundImage: `url(${bg1})` }}
+      style={{ backgroundImage: `url(${bg2})` }}
     >
       <div
         className="bg-cover bg-no-repeat h-full w-full"

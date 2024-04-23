@@ -4,6 +4,8 @@ import { getProducts, getSingleProducts } from "../thunks/productThunk";
 const initialState = {
   products: [],
   singleProduct: {},
+  cart: JSON.parse(localStorage.getItem("cart")) || [],
+  cartTotal: 0,
   loading: false,
   error: null,
 };
@@ -20,6 +22,12 @@ const productsSlice = createSlice({
     },
     clearError(state) {
       state.error = null;
+    },
+    addCart(state, action) {
+      state.cart = action.payload;
+    },
+    cartTot(state, action) {
+      state.cartTotal = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -51,6 +59,7 @@ const productsSlice = createSlice({
   },
 });
 
-export const { setLoading, setError, clearError } = productsSlice.actions;
+export const { setLoading, setError, clearError, addCart,cartTot } =
+  productsSlice.actions;
 
 export default productsSlice.reducer;

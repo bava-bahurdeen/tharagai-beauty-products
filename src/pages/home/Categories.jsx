@@ -30,6 +30,7 @@ export default function Categories() {
       {categeryList.map((imgs) => {
         return (
           <div
+            key={imgs.id}
             style={{ backgroundImage: `url(${imgs.img})` }}
             className="h-[405px] w-full flex flex-col justify-center items-center bg-cover bg-no-repeat"
           >

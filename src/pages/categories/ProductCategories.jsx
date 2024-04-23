@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 // import { product } from "../../assets/data";
 import ProductCard from "../../assets/components/ProductCard";
 import QuestinBottom from "../../assets/components/QuestinBottom";
 
 import { Link } from "react-router-dom";
-import { getProducts } from "../../store/thunks/productThunk";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
-function BathAndBodies() {
-
+function ProductCategories() {
   const products = useSelector((state) => state.products.products);
 
   return (
@@ -61,4 +59,4 @@ function BathAndBodies() {
   );
 }
 
-export default BathAndBodies;
+export default ProductCategories;

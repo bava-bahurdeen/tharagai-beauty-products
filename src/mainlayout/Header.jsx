@@ -7,6 +7,7 @@ import { IoMenuSharp } from "react-icons/io5";
 import { Badge } from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { IoClose } from "react-icons/io5";
+import { useSelector } from "react-redux";
 
 const linkList = [
   {
@@ -44,6 +45,8 @@ const linkList = [
 export default function Header() {
   const [leftNav, setLeftnav] = useState(false);
 
+  const cart = useSelector((state) => state.products.cart);
+
   return (
     <header className="bg-white w-full  sticky top-0  data-[sticked='true']:shadow z-[2]">
       <section className="container mx-auto flex justify-between items-center py-4  ">
@@ -74,17 +77,25 @@ export default function Header() {
           })}
         </div>
 
-        <div className="hidden lg:flex lg:items-center lg:justify-center lg:gap-2 h-full ">
-          <FaUser className="text-success h-5 w-5 font-bold" />
-          <p className="font-hind font-semibold text-secondary mt-2">$0.00</p>
-          <Badge
-            size="small"
-            count={2}
-            className="font-hind font-extrabold text-xl mt-2"
-            style={{ backgroundColor: "#7E8427" }}
-          >
-            <ShoppingCartOutlined className="font-hind font-extrabold text-secondary" />
-          </Badge>
+        <div className="hidden lg:flex lg:items-center lg:justify-center lg:gap-6 h-full ">
+          <Link className="flex gap-2 items-center">
+            <FaUser className="text-success h-4 w-4 font-bold" />
+            <p className="text-success font-semibold">Login</p>
+          </Link>
+
+          <Link to={"/cart"} className="flex items-center gap-2  ">
+            <Badge
+              size="small"
+              count={cart.length}
+              className="font-hind font-extrabold text-xl mt-2"
+              style={{ backgroundColor: "#7E8427" }}
+            >
+              <ShoppingCartOutlined className="font-hind font-extrabold text-secondary" />
+            </Badge>
+            <p className="font-hind font-semibold text-secondary mt-1">
+              Cart
+            </p>
+          </Link>
         </div>
       </section>
 

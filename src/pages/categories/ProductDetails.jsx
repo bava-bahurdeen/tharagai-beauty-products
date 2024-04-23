@@ -7,8 +7,8 @@ import { IoStar } from "react-icons/io5";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { FaAngleDown } from "react-icons/fa6";
 import ProductDetailsBottom from "./ProductDetailsBottom";
-import RelatedProduct from "./_components/RelatedProduct";
 import QuestinBottom from "../../assets/components/QuestinBottom";
+import { addCart } from "../../store/slice/productSlice";
 
 export default function Productpage() {
   let { productId } = useParams();
@@ -20,7 +20,7 @@ export default function Productpage() {
 
   const product = useSelector((state) => state.products.singleProduct);
   const loading = useSelector((state) => state.products.loading);
-  console.log(product);
+  // const cart = useSelector((state) => state.products.cart);
 
   const variations = product?.variations;
   const [selectedVariation, setSelectedVariation] = useState(null); // Initialize with null
@@ -41,6 +41,22 @@ export default function Productpage() {
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
+  };
+
+  const addCard = (productId, itemCount) => {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const selectedVariationPrice = selectedVariation
+      ? selectedVariation.price
+      : null;
+    let productExists = cart.find((item) => item.productId === productId);
+    if (productExists) {
+      productExists.itemCount = itemCount;
+      productExists.selectedVariationPrice = selectedVariationPrice; // Update selected variation price
+    } else {
+      cart.push({ productId, itemCount, selectedVariationPrice });
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+    dispatch(addCart(cart));
   };
 
   return (
@@ -146,21 +162,22 @@ export default function Productpage() {
                       type="number"
                       value={itemCount}
                       onChange={(e) => setItemcount(Number(e.target.value))}
-                      className="border-none outline-none no-spinner w-16 lg:w-28 text-center text-lg"
+                      className="border-none outline-none no-spinner w-16 lg:w-28 text-center"
                     />
                     <button onClick={() => setItemcount(itemCount + 1)}>
                       <FaPlus />
                     </button>
                   </div>
-                  <div className="border border-secondary flex p-3 px-4 bg-secondary ">
-                    <button className="text-lg text-white w-32 lg:w-36">
-                      Add to cart
-                    </button>
-                  </div>
+                  <button
+                    className=" text-white border border-secondary p-3 w-40 px-4 bg-secondary hover:bg-white hover:text-secondary"
+                    onClick={() => addCard(product.id, itemCount)}
+                  >
+                    Add to cart
+                  </button>
                 </div>
 
                 <div className="mt-5">
-                  <div className="relative cursor-pointer">
+                  <div className="relative cursor-pointer lg:w-[80%]">
                     <input
                       type="checkbox"
                       className="h-full w-full absolute cursor-pointer opacity-0 top-0"
