@@ -1,13 +1,14 @@
 import React from "react";
 
-export default function InputBox({ id, reviewName, setReviewName, type }) {
+export default function InputBox({ id, value, changeFun, type, placeholder }) {
   return (
     <input
-      className="outline-0 border p-3 w-full mt-1"
+      className="outline-0 border shadow p-3 w-full mt-1 bg-transparent"
       id={id}
-      value={reviewName}
+      value={value}
       type={type ? type : "text"}
-      onChange={(e) => setReviewName(e.target.value)}
+      onChange={(e) => changeFun(e.target.value)}
+      placeholder={placeholder ? placeholder : ""}
     />
   );
 }

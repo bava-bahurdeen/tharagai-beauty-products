@@ -32,6 +32,9 @@ function App() {
 
   const cart = useSelector((state) => state.products.cart);
 
+  const users = useSelector((state) => state.users.users);
+
+
   var total = 0;
 
   for (var i of cart) {
@@ -49,6 +52,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/categories" element={<ProductCategories />} />
         <Route path="/product-detail/:productId" element={<ProductDetails />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
 
       <Footer />
@@ -56,13 +60,17 @@ function App() {
   );
 
   const UserLogin = () => {
-    
+    return (
+      <Routes>
+        <Route path="" element={<Login />} />
+        <Route path="signup" element={<SignUp />} />
+      </Routes>
+    );
   };
 
   const AdminRoutes = () => (
     <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="signup" element={<SignUp />} />
+      <Route path="" element={<Login />} />
       <Route path="dashboard" element={<Dashboard />}>
         <Route path="" element={<MainDashBoard />} />
         <Route path="order" element={<Order />} />
@@ -75,7 +83,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/*" element={<UserPages />} />
-          <Route path="login/*" element={<UserPages />} />
+          <Route path="login/*" element={<UserLogin />} />
           <Route path="admin/*" element={<AdminRoutes />} />
         </Routes>
       </BrowserRouter>

@@ -47,6 +47,9 @@ export default function Header() {
 
   const cart = useSelector((state) => state.products.cart);
 
+  const user = useSelector((state) => state.users.users);
+  console.log(user);
+
   return (
     <header className="bg-white w-full  sticky top-0  data-[sticked='true']:shadow z-[2]">
       <section className="container mx-auto flex justify-between items-center py-4  ">
@@ -78,9 +81,11 @@ export default function Header() {
         </div>
 
         <div className="hidden lg:flex lg:items-center lg:justify-center lg:gap-6 h-full ">
-          <Link className="flex gap-2 items-center">
+          <Link to={"/login"} className="flex gap-2 items-center">
             <FaUser className="text-success h-4 w-4 font-bold" />
-            <p className="text-success font-semibold">Login</p>
+            <p className="text-success font-semibold">
+              {user.username ? user.username : <>Login</>}
+            </p>
           </Link>
 
           <Link to={"/cart"} className="flex items-center gap-2  ">
