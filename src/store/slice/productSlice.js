@@ -1,11 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getProducts, getSingleProducts } from "../thunks/productThunk";
+import {
+  getProducts,
+  getSingleProducts,
+  getCarts,
+  addCarts,
+  deleteCart,
+} from "../thunks/productThunk";
 
 const initialState = {
   products: [],
   singleProduct: {},
-  cart: JSON.parse(localStorage.getItem("cart")) || [],
-  cartTotal: 0,
+  cart: [],
   loading: false,
   error: null,
 };
@@ -25,9 +30,6 @@ const productsSlice = createSlice({
     },
     addCart(state, action) {
       state.cart = action.payload;
-    },
-    cartTot(state, action) {
-      state.cartTotal = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -55,11 +57,47 @@ const productsSlice = createSlice({
       .addCase(getSingleProducts.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
+      })
+      .addCase(getCarts.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getCarts.fulfilled, (state, action) => {
+        state.loading = false;
+        state.cart = action.payload;
+      })
+      .addCase(getCarts.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(addCarts.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(addCarts.fulfilled, (state, action) => {
+        state.loading = false;
+        state.cart = action.payload;
+      })
+      .addCase(addCarts.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(deleteCart.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(deleteCart.fulfilled, (state, action) => {
+        state.loading = false;
+        state.cart = action.payload;
+      })
+      .addCase(deleteCart.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
       });
   },
 });
 
-export const { setLoading, setError, clearError, addCart,cartTot } =
+export const { setLoading, setError, clearError, addCart, cartTot } =
   productsSlice.actions;
 
 export default productsSlice.reducer;

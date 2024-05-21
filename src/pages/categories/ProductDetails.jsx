@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getSingleProducts } from "../../store/thunks/productThunk";
+import { addCarts, getSingleProducts } from "../../store/thunks/productThunk";
 import { useDispatch, useSelector } from "react-redux";
 import { Spin } from "antd";
 import { Link, useParams } from "react-router-dom";
@@ -8,9 +8,9 @@ import { FaMinus, FaPlus } from "react-icons/fa";
 import { FaAngleDown } from "react-icons/fa6";
 import ProductDetailsBottom from "./ProductDetailsBottom";
 import QuestinBottom from "../../assets/components/QuestinBottom";
-import { addCart } from "../../store/slice/productSlice";
 
 export default function Productpage() {
+  const token = useSelector((state) => state.users.token);
   let { productId } = useParams();
   const dispatch = useDispatch();
 
@@ -20,7 +20,6 @@ export default function Productpage() {
 
   const product = useSelector((state) => state.products.singleProduct);
   const loading = useSelector((state) => state.products.loading);
-  // const cart = useSelector((state) => state.products.cart);
 
   const variations = product?.variations;
   const [selectedVariation, setSelectedVariation] = useState(null); // Initialize with null
@@ -43,20 +42,13 @@ export default function Productpage() {
     setIsChecked(!isChecked);
   };
 
-  const addCard = (productId, itemCount) => {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const selectedVariationPrice = selectedVariation
-      ? selectedVariation.price
-      : null;
-    let productExists = cart.find((item) => item.productId === productId);
-    if (productExists) {
-      productExists.itemCount = itemCount;
-      productExists.selectedVariationPrice = selectedVariationPrice; // Update selected variation price
-    } else {
-      cart.push({ productId, itemCount, selectedVariationPrice });
-    }
-    localStorage.setItem("cart", JSON.stringify(cart));
-    dispatch(addCart(cart));
+  const addCard = () => {
+    const cartData = {
+      id: selectedVariation?.id,
+      qty: itemCount,
+      token: token,
+    };
+    dispatch(addCarts(cartData));
   };
 
   return (
@@ -80,26 +72,26 @@ export default function Productpage() {
               </div>
 
               <div className="text-sm text-light_gray font-hind ">
-                <div className="flex gap-1 flex-wrap">
-                  <Link to={"/"} className="font-hind">
+                {/* <div className="flex gap-1 flex-wrap">
+                  <Link to="/" className="font-hind">
                     Home
                   </Link>
                   /
-                  <Link to={"/"} className="font-hind">
+                  <Link to="/" className="font-hind">
                     {product.product_type_name}
                   </Link>
                   /
-                  <Link to={"/"} className="font-hind">
+                  <Link to="/" className="font-hind">
                     {product.name}
                   </Link>
-                </div>
+                </div> */}
 
-                <p className="text-base text-light_gray font-hind mt-2">
+                <p className="text-base text-light_gray font-hind mt-2 capitalize">
                   {product.product_type_name}
                 </p>
 
                 <div className="flex gap-4 items-baseline flex-wrap">
-                  <h1 className="text-2xl lg:text-4xl font-semibold mt-2 text-black">
+                  <h1 className="text-2xl lg:text-4xl font-semibold mt-2 text-black capitalize">
                     {product.name}
                   </h1>
                   <p className="flex items-center gap-1">
@@ -170,7 +162,7 @@ export default function Productpage() {
                   </div>
                   <button
                     className=" text-white border border-secondary p-3 w-40 px-4 bg-secondary hover:bg-white hover:text-secondary"
-                    onClick={() => addCard(product.id, itemCount)}
+                    onClick={() => addCard()}
                   >
                     Add to cart
                   </button>

@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 
 export default function Howtouse() {
   const product = useSelector((state) => state.products.singleProduct);
-  console.log(product.howtouse);
   return (
     <section className="mt-4">
       <h1 className="text-xl font-bold">How to Use</h1>

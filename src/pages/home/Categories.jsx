@@ -2,6 +2,8 @@ import React from "react";
 import skin from "../../assets/images/productCategeries/skincare.png";
 import hair from "../../assets/images/productCategeries/haircare.png";
 import bath from "../../assets/images/productCategeries/bathcare.png";
+import { useQuery } from "@tanstack/react-query";
+import axiosInstance from "../../store/axiosInstance";
 
 const categeryList = [
   {
@@ -25,25 +27,25 @@ const categeryList = [
 ];
 
 export default function Categories() {
+  const { isPending, error, data } = useQuery({
+    queryKey: ["productsType"],
+    queryFn: () =>
+      axiosInstance.get("/products/product/type/").then((res) => {
+        return res.data;
+      }),
+  });
+
+  console.log("The data is  : ", data);
   return (
-    <section className="bg-primary grid lg:grid-cols-3 gap-2 p-4">
-      {categeryList.map((imgs) => {
-        return (
-          <div
-            key={imgs.id}
-            style={{ backgroundImage: `url(${imgs.img})` }}
-            className="h-[405px] w-full flex flex-col justify-center items-center bg-cover bg-no-repeat"
-          >
-            <p className="text-white font-medium">{imgs.title}</p>
-            <h1 className="text-white font-medium text-[40px] mt-0">
-              {imgs.name}
-            </h1>
-            <button className="bg-white p-3 px-4 text-sm font-medium mt-2 hover:bg-secondary hover:text-white">
-              Shop Now
-            </button>
-          </div>
-        );
-      })}
+    <section className="bg-primary grid lg:grid-cols-6 gap-2 p-4">
+      {data &&
+        data.map((typ) => {
+          return (
+            <div key={typ.id}>
+              <h1>{typ.name}</h1>
+            </div>
+          );
+        })}
     </section>
   );
 }

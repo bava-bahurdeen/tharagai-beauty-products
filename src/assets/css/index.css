@@ -30,3 +30,30 @@ p {
 .no-spinner {
   -moz-appearance: textfield;
 }
+
+input[type="radio"]:checked {
+  accent-color: #7E8427;
+}
+
+/* .ant-table-thead tr th {
+  background-color: green;
+}
+
+:where(.css-dev-only-do-not-override-1paxfrs).ant-table-wrapper
+  .ant-table-thead
+  > tr
+  > th,
+:where(.css-dev-only-do-not-override-1paxfrs).ant-table-wrapper
+  .ant-table-thead
+  > tr
+  > td {
+  background-color: yellowgreen;
+} */
+/* .ant-table
+  .ant-table-container
+  .ant-table-content
+  table
+  thead.ant-table-thead
+  .ant-table-cell {
+  background-color: green;
+} */

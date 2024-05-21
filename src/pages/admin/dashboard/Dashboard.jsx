@@ -1,55 +1,54 @@
-import React, { useState } from "react";
-import { Outlet } from "react-router-dom";
-import SideBar from "./SideBar";
-import dashboardList from "./dashboardList";
-import { BiMessage, BiSolidBellRing } from "react-icons/bi";
-import profileImg from "../../../assets/Admin/profile.jpg";
-import { FaBarsStaggered } from "react-icons/fa6";
+import React from "react";
+import Header from "./Header";
+import SideMenu from "./SideMenu";
+import { Navigate, Route, Routes } from "react-router-dom";
+import Orders from "./_components/Orders";
+import Addproducts from "./_components/Addproducts";
+import Customers from "./_components/Customers";
+import Showproducts from "./_components/Showproducts";
+import Dash from "./_components/Dash";
+import { ConfigProvider } from "antd";
+import { useSelector } from "react-redux";
 
-const Dashboard = () => {
-  const [navbar, setNavbar] = useState(false);
+export default function Dashboard() {
+  const userLoading = useSelector((state) => state.users.loading);
+  const userError = useSelector((state) => state.users.error);
+  const user = useSelector((state) => state.users.users.isAdmin);
 
-  function handleNavbar() {
-    setNavbar(!navbar);
+  if (userError) {
+    return <Navigate to="/login" />;
   }
 
-  return (
-    <div className="lg:flex lg:justify-around lg:gap-20 xl:gap-2 lg:p-3 lg:w-full">
-      <div
-        className={
-          navbar
-            ? " fixed top-0 left-0 w-full h-full bg-white transition-all duration-700 md:w-[50%] lg:static lg:w-auto xl:w-auto "
-            : " fixed top-0 -left-full w-full h-full  bg-white transition-all duration-700  lg:static lg:w-auto lg:h-auto text-4xl"
-        }
-      >
-        <SideBar dashboardList={dashboardList} handleNavbar={handleNavbar} />
-      </div>
-      <div className="lg:w-[70%] xl:w-[70%]">
-        <main className="flex text-[#2A4178] justify-between lg:justify-end items-center p-6">
-        <FaBarsStaggered onClick={handleNavbar} className="lg:hidden text-2xl " />
-          <section className="flex gap-4 ">
-          <div className="border border-gray-400  my-3  p-1 rounded-md md:w-full  hidden md:flex   ">
-          <input
-            type="text"
-            placeholder="Search"
-            className="outline-none w-full text-gray-600 p-1  "
-          />
-        </div>
-        <div className="flex items-center md:text-4xl text-xl gap-2">
-          <BiMessage />
-          <BiSolidBellRing />
-          <img
-            src={profileImg}
-            className="md:w-[70px] w-[50px] h-[50px] object-cover rounded-full  md:rounded-[100%] "
-            alt="profile-img"
-          />
-        </div>
-          </section>
-        </main>
-        <Outlet />
-      </div>
-    </div>
-  );
-};
+  if (userLoading) {
+    return <p>Loading...</p>;
+  }
 
-export default Dashboard;
+  if (!user) {
+    return <p>Access Denied...!</p>;
+  }
+  return (
+    <main>
+      <ConfigProvider
+        theme={{
+          token: {
+            colorPrimary: "#7E8427",
+            borderRadius: 2,
+            colorBgContainer: "rgba(0, 0, 0, 0.11)",
+          },
+        }}
+      >
+        <Header></Header>
+        <div className="flex gap-4" style={{ marginTop: "0.5px" }}>
+          <SideMenu />
+          <Routes>
+            <Route path="" element={<Dash />} />
+            <Route path="order" element={<Orders />} />
+            <Route path="addproduct" element={<Addproducts />} />
+            <Route path="customers" element={<Customers />} />
+            <Route path="show-products" element={<Showproducts />} />
+          </Routes>
+        </div>
+      </ConfigProvider>
+    </main>
+  );
+}

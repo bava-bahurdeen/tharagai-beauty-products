@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
-import {  useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ProductCard from "../../../assets/components/ProductCard";
 
 export default function RelatedProduct() {
-
   const products = useSelector((state) => state.products.products);
 
   return (
@@ -14,13 +13,13 @@ export default function RelatedProduct() {
       <div className="mt-5 grid grid-cols md:grid-cols-3 lg:grid-cols-4 gap-10">
         {products.map((i) => {
           return (
-            <Link
+            <div
               to={`/product-detail/${i.id}`}
               className="relative group rounded"
               key={i?.id}
             >
               <ProductCard i={i} />
-            </Link>
+            </div>
           );
         })}
       </div>

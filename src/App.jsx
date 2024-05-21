@@ -8,39 +8,35 @@ import Contact from "./pages/contact/Contact";
 import ProductCategories from "./pages/categories/ProductCategories";
 import ProductDetails from "./pages/categories/ProductDetails";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "./store/thunks/productThunk";
+import { getProducts, getCarts } from "./store/thunks/productThunk";
 import { useEffect } from "react";
 
 import Cart from "./pages/cart/Cart";
-import { cartTot } from "./store/slice/productSlice";
 
-import Login from "./pages/admin/login/Login";
+import Login from "./pages/users/Login";
 import SignUp from "./pages/admin/login/SignUp";
+
 import Dashboard from "./pages/admin/dashboard/Dashboard";
-import MainDashBoard from "./pages/admin/dashboard/MainDashBoard";
-import Order from "./pages/admin/dashboard/order/Order";
-import NewProductFunct from "./pages/admin/dashboard/newProduct/NewProductFunct";
+import Account from "./pages/account/Account";
+import { logIn } from "./store/thunks/userThunk";
 
 function App() {
   const dispatch = useDispatch();
 
+  const token = useSelector((state) => state.users.token);
+
   useEffect(() => {
-    dispatch(getProducts());
-  }, [dispatch]);
-
-  // localStorage.removeItem("cart");
-
-  const cart = useSelector((state) => state.products.cart);
-
-  const users = useSelector((state) => state.users.users);
-
-
-  var total = 0;
-
-  for (var i of cart) {
-    total = total + i.itemCount * Number(i.selectedVariationPrice);
-  }
-  dispatch(cartTot(total));
+    const fetchData = async () => {
+      try {
+        dispatch(getProducts());
+        dispatch(getCarts(token));
+        dispatch(logIn(token));
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, [dispatch, token]);
 
   const UserPages = () => (
     <div>
@@ -53,8 +49,8 @@ function App() {
         <Route path="/categories" element={<ProductCategories />} />
         <Route path="/product-detail/:productId" element={<ProductDetails />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
-
       <Footer />
     </div>
   );
@@ -68,23 +64,24 @@ function App() {
     );
   };
 
-  const AdminRoutes = () => (
-    <Routes>
-      <Route path="" element={<Login />} />
-      <Route path="dashboard" element={<Dashboard />}>
-        <Route path="" element={<MainDashBoard />} />
-        <Route path="order" element={<Order />} />
-        <Route path="newproduct" element={<NewProductFunct />} />
-      </Route>
-    </Routes>
-  );
+  const Accounturl = () => {
+    return (
+      <div>
+        <Routes>
+          <Route path="" element={<Account />} />
+        </Routes>
+      </div>
+    );
+  };
+
   return (
     <div>
       <BrowserRouter>
         <Routes>
           <Route path="/*" element={<UserPages />} />
-          <Route path="login/*" element={<UserLogin />} />
-          <Route path="admin/*" element={<AdminRoutes />} />
+          <Route path="/auth/*" element={<UserLogin />} />
+          <Route path="admin/*" element={<Dashboard />} />
+          <Route path="account/*" element={<Accounturl />} />
         </Routes>
       </BrowserRouter>
     </div>

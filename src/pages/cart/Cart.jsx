@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { Spin } from "antd";
 import QuestinBottom from "../../assets/components/QuestinBottom";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import CartCard from "./CartCard";
 import Button from "../../assets/components/Button";
 import { FaArrowLeft } from "react-icons/fa6";
@@ -10,7 +10,22 @@ import { FaArrowLeft } from "react-icons/fa6";
 export default function Cart() {
   const loading = useSelector((state) => state.products.loading);
   const cart = useSelector((state) => state.products.cart);
-  const cartTot = useSelector((state) => state.products.cartTotal);
+  const userLoading = useSelector((state) => state.users.loading);
+  const userError = useSelector((state) => state.users.error);
+
+  let total = 0;
+  cart.map((ca) => {
+    total = Number(ca.total_cart) + Number(total);
+  });
+
+  if (userError) {
+    // navigate("/login");
+    return <Navigate to="/login" />;
+  }
+
+  if (userLoading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <>
@@ -21,11 +36,13 @@ export default function Cart() {
       ) : (
         <>
           <div className="container mx-auto mt-10">
-            <div className="shadow-md my-10 bg-white p-10">
+            <div className="shadow-md my-10 bg-white p-2 md:p-6 lg:p-10">
               <div className="w-full border">
                 <div className="flex justify-between border-b p-4 pb-8">
                   <h1 className="font-semibold text-2xl">Shopping Cart</h1>
-                  <h2 className="font-semibold text-2xl">3 Items</h2>
+                  <h2 className="font-semibold text-2xl">
+                    {cart.length} Items
+                  </h2>
                 </div>
 
                 <div className="md:flex mt-10 mb-5 border-b pb-2 hidden ">
@@ -45,13 +62,10 @@ export default function Cart() {
                   </h3>
                 </div>
 
-                {cart.map((carts) => {
-                  return (
-                    <div key={carts?.productId}>
-                      <CartCard cart={carts} />
-                    </div>
-                  );
-                })}
+                {cart &&
+                  cart.map((carts, id) => {
+                    return <CartCard cart={carts} key={id} />;
+                  })}
 
                 <Link
                   to={"/categories"}
@@ -71,12 +85,12 @@ export default function Cart() {
                       Total
                     </h1>
                     <h1 className="font-hind font-semibold text-secondary">
-                      ₹{cartTot}
+                      ₹{total}
                     </h1>
                   </div>
-                  <div className="p-3 ">
+                  <Link className="p-3" to={"/account"}>
                     <Button lblName="Proceed to checkout" />
-                  </div>
+                  </Link>
                 </div>
               </div>
             </div>

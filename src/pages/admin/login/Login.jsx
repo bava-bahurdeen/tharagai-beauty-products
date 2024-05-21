@@ -3,30 +3,47 @@ import { GiThreeLeaves } from "react-icons/gi";
 import { MdLogin } from "react-icons/md";
 import { useState } from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import bglogin from "../../../assets/Admin/bg.jpg";
 import InputBox from "../../../assets/components/InputBox";
 import Button from "../../../assets/components/Button";
 
 import axiosInstance from "../../../store/axiosInstance";
-import { updateUser } from "../../../store/slice/userSlice";
-
+import { updateToken, updateUser } from "../../../store/slice/userSlice";
 import { useDispatch } from "react-redux";
 
 function Login() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const dispatch = useDispatch();
 
   const login = async () => {
-    console.log(email, password);
-    const { data } = await axiosInstance.post(`/users/login/`, {
-      username: email,
-      password,
-    });
-    localStorage.setItem("users", data);
-    dispatch(updateUser(data));
+    setLoading(false);
+    if (email == "" && password == "") {
+      console.log("please fill");
+      setError("Please enter the all fields");
+      return false;
+    }
+    try {
+      const { data } = await axiosInstance.post(`/users/login/`, {
+        username: email,
+        password,
+      });
+
+      localStorage.setItem("token", data.access);
+
+      dispatch(updateUser(data));
+      dispatch(updateToken(data.access));
+      setError("");
+      navigate("/");
+    } catch {
+      setError("Please Enter Correct Email & Password");
+    }
+    setLoading(true);
   };
 
   return (
@@ -77,7 +94,13 @@ function Login() {
               </div>
             </div>
             <div className="w-5/6">
-              <Button lblName={"SignIn"} onclick={login} />
+              {loading ? (
+                <Button lblName={"SignIn"} onclick={login} />
+              ) : (
+                <Button lblName={"Loading"} />
+              )}
+
+              <p className="text-center text-red-500 mt-1">{error}</p>
             </div>
 
             <div className="flex">

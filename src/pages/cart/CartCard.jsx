@@ -2,54 +2,47 @@ import React, { useState } from "react";
 import { CiCircleRemove } from "react-icons/ci";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { addCart, cartTot } from "../../store/slice/productSlice";
+import { addCarts, deleteCart } from "../../store/thunks/productThunk";
 
 export default function CartCard({ cart }) {
   const dispatch = useDispatch();
+  const token = useSelector((state) => state.users.token);
 
-  const { itemCount, productId, selectedVariationPrice } = cart;
+  const { id, image, product_name, item_count, price, total_cart, _id } = cart;
 
-  const [ItemCount, setItemcount] = useState(itemCount);
+  const [ItemCount, setItemcount] = useState(Number(item_count));
 
-  const products = useSelector((state) => state.products.products);
-  const product = products.find((item) => item?.id === productId);
+  const addCartt = (qty) => {
+    const cartData = {
+      id: _id,
+      qty: qty,
+      token: token,
+    };
+    dispatch(addCarts(cartData));
+    
+  };
 
   const changesAmount = (event, action) => {
     if (action === "+") {
-      console.log("add");
       setItemcount(ItemCount + 1);
+      addCartt(ItemCount + 1);
     }
     if (action === "-") {
-      console.log("sub");
       setItemcount(1 < ItemCount ? ItemCount - 1 : ItemCount);
+      addCartt(1 < ItemCount ? ItemCount - 1 : ItemCount);
     }
     if (action === "=") {
-      console.log("equ");
-      setItemcount(event.target.value);
+      setItemcount(Number(event.target.value));
+      addCartt(Number(event.target.value));
     }
-
-    updateCart();
   };
 
-  const updateCart = () => {
-    let card = JSON.parse(localStorage.getItem("cart")) || [];
-    let productExists = card.find((item) => item.productId === productId);
-
-    if (productExists) {
-      productExists.itemCount = ItemCount;
-    }
-    localStorage.setItem("cart", JSON.stringify(card));
-    dispatch(addCart(card));
-    
-    dispatch(cartTot(Number(ItemCount) * Number(selectedVariationPrice)));
-  };
-
-  const removeCart = () => {
-    let card = JSON.parse(localStorage.getItem("cart")) || [];
-    card = card.filter((item) => item.productId !== cart.productId);
-
-    localStorage.setItem("cart", JSON.stringify(card));
-    dispatch(addCart(card));
+  const removeCart = (id) => {
+    const cartData = {
+      id: id,
+      token: token,
+    };
+    dispatch(deleteCart(cartData));
   };
 
   return (
@@ -57,20 +50,23 @@ export default function CartCard({ cart }) {
       <div className="flex justify-center items-center w-2/6 md:w-1/6 font-semibold text-sm">
         <CiCircleRemove
           className="text-3xl font-bold cursor-pointer text-red-400"
-          onClick={removeCart}
+          onClick={() => removeCart(id)}
         />
       </div>
       <div className="flex justify-center items-center w-2/6 md:w-1/6 font-semibold text-sm">
         <img
           className="h-24"
-          src={`${import.meta.env.VITE_LOCAL_IMAGE_URL}${product?.image}`}
-          alt={product?.name}
+          src={`${import.meta.env.VITE_LOCAL_IMAGE_URL}${image}`}
+          alt={product_name}
         />
       </div>
 
-      <span className="text-center w-2/6 md:w-1/6 font-semibold text-sm text-secondary">
-        {product?.name}
-      </span>
+      <a
+        href="#"
+        className="text-center w-2/6 md:w-1/6 font-semibold text-sm text-secondary capitalize"
+      >
+        {product_name}
+      </a>
 
       <div className="text-center w-2/6 mt-5 md:mt-0 md:w-1/6">
         <div className="border border-secondary flex justify-between p-3 px-4 w-fit ">
@@ -90,11 +86,11 @@ export default function CartCard({ cart }) {
       </div>
 
       <span className="text-center w-2/6 mt-5 md:mt-0 md:w-1/6 font-semibold text-sm text-success">
-        ₹{selectedVariationPrice}
+        ₹{price}
       </span>
 
       <span className="text-center w-2/6 mt-5 md:mt-0 md:w-1/6 font-semibold text-sm text-dark_gray">
-        ₹{ItemCount * selectedVariationPrice}
+        ₹{total_cart}
       </span>
     </div>
   );
