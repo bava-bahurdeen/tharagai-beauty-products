@@ -8,7 +8,7 @@ import Contact from "./pages/contact/Contact";
 import ProductCategories from "./pages/categories/ProductCategories";
 import ProductDetails from "./pages/categories/ProductDetails";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts, getCarts } from "./store/thunks/productThunk";
+import { getAllProducts, getCarts,getBestSeller ,getProductTypes} from "./store/thunks/productThunk";
 import { useEffect } from "react";
 
 import Cart from "./pages/cart/Cart";
@@ -28,7 +28,9 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        dispatch(getProducts());
+        
+        dispatch(getBestSeller());
+        dispatch(getProductTypes());
         dispatch(getCarts(token));
         dispatch(logIn(token));
       } catch (error) {
@@ -46,7 +48,10 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/categories" element={<ProductCategories />} />
+        <Route
+          path="/categories/:productType"
+          element={<ProductCategories />}
+        />
         <Route path="/product-detail/:productId" element={<ProductDetails />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Login />} />

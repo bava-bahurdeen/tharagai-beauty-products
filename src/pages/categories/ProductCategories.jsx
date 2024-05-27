@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ProductCard from "../../assets/components/ProductCard";
 import QuestinBottom from "../../assets/components/QuestinBottom";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllProducts } from "../../store/thunks/productThunk";
+import { useParams } from "react-router-dom";
 
 function ProductCategories() {
+  let { productType } = useParams();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        dispatch(getAllProducts(productType));
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, [dispatch]);
+
   const products = useSelector((state) => state.products.products);
+  const loading = useSelector((state) => state.products.loading);
+
+  if (loading) {
+    return <section>Loading....</section>;
+  }
 
   return (
     <>
@@ -39,9 +60,7 @@ function ProductCategories() {
           </div>
           <ul className="mt-5 grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {products.map((i) => {
-              return (
-                <ProductCard i={i} key={i.id} />
-              );
+              return <ProductCard i={i} key={i.id} />;
             })}
           </ul>
         </div>

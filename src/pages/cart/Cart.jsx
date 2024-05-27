@@ -88,8 +88,10 @@ export default function Cart() {
                       ₹{total}
                     </h1>
                   </div>
-                  <Link className="p-3" to={"/account"}>
-                    <Button lblName="Proceed to checkout" />
+                  <Link to={"/account"}>
+                    <button className="p-2 bg-secondary text-white w-full">
+                      Proceed to checkout
+                    </button>
                   </Link>
                 </div>
               </div>

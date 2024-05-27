@@ -1,11 +1,18 @@
 import axiosInstance from "../axiosInstance";
 
-const getProducts = () => {
-  return axiosInstance.get(`/products`);
+const getBestSeller = (type) => {
+  return axiosInstance.get(`/products/bestSeller/`);
+};
+const getProductTypes = (type) => {
+  return axiosInstance.get(`/products/product-type/`);
+};
+
+const getAllProducts = (type) => {
+  return axiosInstance.get(`products/product-filter/${type}/`);
 };
 
 const getSingleProducts = (id) => {
-  return axiosInstance.get(`/products/${id}`);
+  return axiosInstance.get(`/products/product-get/${id}`);
 };
 
 const getCarts = async (token) => {
@@ -33,7 +40,9 @@ const addCarts = async (cartData) => {
 };
 
 export const productsService = {
-  getProducts,
+  getBestSeller,
+  getProductTypes,
+  getAllProducts,
   getSingleProducts,
   getCarts,
   addCarts,

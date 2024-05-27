@@ -1,51 +1,39 @@
 import React from "react";
-import skin from "../../assets/images/productCategeries/skincare.png";
-import hair from "../../assets/images/productCategeries/haircare.png";
-import bath from "../../assets/images/productCategeries/bathcare.png";
-import { useQuery } from "@tanstack/react-query";
-import axiosInstance from "../../store/axiosInstance";
-
-const categeryList = [
-  {
-    id: 1,
-    img: skin,
-    title: "Skin Care Products",
-    name: "Skin Care",
-  },
-  {
-    id: 2,
-    img: hair,
-    title: "Hair Care Products",
-    name: "Hair Care",
-  },
-  {
-    id: 3,
-    img: bath,
-    title: "Bath & Body Care Products",
-    name: "Bath & Body",
-  },
-];
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllProducts } from "../../store/thunks/productThunk";
 
 export default function Categories() {
-  const { isPending, error, data } = useQuery({
-    queryKey: ["productsType"],
-    queryFn: () =>
-      axiosInstance.get("/products/product/type/").then((res) => {
-        return res.data;
-      }),
-  });
+  const productTypes = useSelector((state) => state.products.productTypes);
 
-  console.log("The data is  : ", data);
   return (
-    <section className="bg-primary grid lg:grid-cols-6 gap-2 p-4">
-      {data &&
-        data.map((typ) => {
-          return (
-            <div key={typ.id}>
-              <h1>{typ.name}</h1>
-            </div>
-          );
-        })}
+    <section className="py-1 lg:container lg:mx-auto mb-20">
+      <h1 className="font-medium text-xl text-center mt-10">Our Categories</h1>
+
+      <div className="flex flex-wrap justify-center gap-6 mt-16">
+        {productTypes &&
+          productTypes.map((cat) => {
+            return (
+              <Link
+                to={`/categories/${cat.name}/`}
+                className="flex flex-col items-center"
+                key={cat.id}
+              >
+                <div className="bg-white/60 rounded-full h-44 w-44 flex justify-center items-center">
+                  <img
+                    src={cat.image}
+                    alt={cat.name}
+                    className="rounded-full"
+                  />
+                </div>
+                <h1 className="text-xl capitalize mt-4 text-secondary font-bold">
+                  {cat.name}
+                </h1>
+              </Link>
+            );
+          })}
+      </div>
+      {/* <h1 className="h-[1px] w-full bg-gray-600 opacity-25 mt-20"></h1> */}
     </section>
   );
 }
