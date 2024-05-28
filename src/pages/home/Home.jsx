@@ -14,7 +14,7 @@ export default function Home() {
       <Ingredients />
       <BestSeller />
       <Categories />
-      <Favorite />
+      {/* <Favorite /> */}
       <Testimonials />
       <QuestinBottom />
     </main>

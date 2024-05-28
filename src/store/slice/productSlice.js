@@ -1,10 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-  getProducts,
+  getAllProducts,
   getSingleProducts,
   getCarts,
   addCarts,
   deleteCart,
+  getBestSeller,
+  getProductTypes,
 } from "../thunks/productThunk";
 
 const initialState = {
@@ -13,6 +15,8 @@ const initialState = {
   cart: [],
   loading: false,
   error: null,
+  bestSeller: [],
+  productTypes: [],
 };
 
 const productsSlice = createSlice({
@@ -34,15 +38,21 @@ const productsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getProducts.pending, (state) => {
+      .addCase(getBestSeller.fulfilled, (state, action) => {
+        state.bestSeller = action.payload;
+      })
+      .addCase(getProductTypes.fulfilled, (state, action) => {
+        state.productTypes = action.payload;
+      })
+      .addCase(getAllProducts.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(getProducts.fulfilled, (state, action) => {
+      .addCase(getAllProducts.fulfilled, (state, action) => {
         state.loading = false;
         state.products = action.payload;
       })
-      .addCase(getProducts.rejected, (state, action) => {
+      .addCase(getAllProducts.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       })

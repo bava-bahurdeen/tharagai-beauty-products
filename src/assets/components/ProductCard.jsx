@@ -24,13 +24,14 @@ function ProductCard({ i }) {
     console.log("cartData : ", cartData);
     dispatch(addCarts(cartData));
   };
+  console.log(i);
 
   return (
     <li className="relative flex flex-col gap-4 basis-12/12 md:basis-5/12 lg:basis-3/12 rounded shadow hover:shadow-lg p-2 pb-8 cursor-pointer">
       <div className="w-[100%]  bg-white/40 rounded-t flex items-center justify-center relative">
         <Link to={`/product-detail/${i.id}`}>
           <img
-            src={`${i?.image}`}
+            src={`${import.meta.env.VITE_LOCAL_IMAGE_URL}${i?.image}`}
             alt={i?.name}
             className="object-contain w-full lg:h-[250px]"
           />

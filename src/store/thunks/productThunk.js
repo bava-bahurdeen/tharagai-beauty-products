@@ -2,12 +2,45 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { productsService } from "../services/productService";
 import { setLoading, setError } from "../slice/productSlice"; // Assuming these actions are defined in your slice file
 
-export const getProducts = createAsyncThunk(
+
+export const getBestSeller = createAsyncThunk(
+  "bestSeller/get",
+  async (data, { dispatch }) => {
+    try {
+      dispatch(setLoading(true));
+      const res = await productsService.getBestSeller();
+      return res.data;
+    } catch (error) {
+      dispatch(setError(error.message));
+      throw error;
+    } finally {
+      dispatch(setLoading(false));
+    }
+  }
+);
+
+export const getProductTypes = createAsyncThunk(
+  "productTypes/get",
+  async (data, { dispatch }) => {
+    try {
+      dispatch(setLoading(true));
+      const res = await productsService.getProductTypes();
+      return res.data;
+    } catch (error) {
+      dispatch(setError(error.message));
+      throw error;
+    } finally {
+      dispatch(setLoading(false));
+    }
+  }
+);
+
+export const getAllProducts = createAsyncThunk(
   "products/get",
   async (data, { dispatch }) => {
     try {
       dispatch(setLoading(true));
-      const res = await productsService.getProducts();
+      const res = await productsService.getAllProducts(data);
       return res.data;
     } catch (error) {
       dispatch(setError(error.message));
@@ -65,7 +98,6 @@ export const addCarts = createAsyncThunk(
     }
   }
 );
-
 
 export const deleteCart = createAsyncThunk(
   "addCart/delete",
