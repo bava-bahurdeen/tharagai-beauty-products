@@ -19,6 +19,7 @@ import SignUp from "./pages/admin/login/SignUp";
 import Dashboard from "./pages/admin/dashboard/Dashboard";
 import Account from "./pages/account/Account";
 import { logIn } from "./store/thunks/userThunk";
+import UserAddress from "./pages/account/UserAddress";
 
 function App() {
   const dispatch = useDispatch();
@@ -50,6 +51,7 @@ function App() {
         <Route path="/product-detail/:productId" element={<ProductDetails />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/address" element={<UserAddress />} />
       </Routes>
       <Footer />
     </div>
