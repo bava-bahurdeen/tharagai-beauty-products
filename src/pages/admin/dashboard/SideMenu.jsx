@@ -44,10 +44,10 @@ export default function SideMenu() {
       className="bg-white w-2/12 sticky top-16"
       style={{ height: "calc(100vh - 66px)", marginTop: "0.5px" }}
     >
-      <p className="text-gray-500 font-semibold text-sm px-14  py-8">
+      <p className="text-gray-500 font-semibold text-sm px-6  py-8">
         Main Menu{" "}
       </p>
-      <ul className="flex flex-col px-14 gap-5">
+      <ul className="flex flex-col px-6 gap-5">
         {sideLinkes.map((url) => {
           return (
             <li
