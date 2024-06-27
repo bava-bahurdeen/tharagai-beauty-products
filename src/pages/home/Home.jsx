@@ -1,10 +1,5 @@
 import React from "react";
-import Hero from "./Hero";
-import Ingredients from "./Ingredients";
-import BestSeller from "./BestSeller";
-import Categories from "./Categories";
-import Testimonials from "./Testimonials";
-import QuestinBottom from "../../assets/components/QuestinBottom";
+
 
 
   
