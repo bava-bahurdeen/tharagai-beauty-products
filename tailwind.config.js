@@ -16,11 +16,8 @@ export default {
         primary: "#F4E9E3",
         secondary: "#7E8427",
         success: "#C89374",
-<<<<<<< HEAD
         dark: "#000",
-=======
         dark: "#000000",
->>>>>>> 22000fa94674e48ab7353d623f8e2a4e3416402c
         light: "#FFFFFF",
         borderLine: "#CCC2BE",
         light_gray: "#777777",

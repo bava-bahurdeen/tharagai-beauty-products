@@ -9,17 +9,13 @@ import ProductCategories from "./pages/categories/ProductCategories";
 import ProductDetails from "./pages/categories/ProductDetails";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts, getCarts,getBestSeller ,getProductTypes} from "./store/thunks/productThunk";
-<<<<<<< HEAD
 import { useEffect,lazy, Suspense } from "react";
-=======
 import { useEffect } from "react";
->>>>>>> 22000fa94674e48ab7353d623f8e2a4e3416402c
 
 import Cart from "./pages/cart/Cart";
 
 import Login from "./pages/users/Login";
 import SignUp from "./pages/admin/login/SignUp";
-<<<<<<< HEAD
 import Profile from "./pages/profile/Profile"
 const Order=lazy(()=>import('./pages/profile/orders/Order'))
 const Address=lazy(()=>import('./pages/profile/address/Address'))
@@ -28,13 +24,12 @@ const EditAddress=lazy(()=>import('./pages/profile/address/EditAddress'))
 import Dashboard from "./pages/admin/dashboard/Dashboard";
 import Account from "./pages/account/Account";
 import { logIn } from "./store/thunks/userThunk";
-=======
+
 
 import Dashboard from "./pages/admin/dashboard/Dashboard";
 import Account from "./pages/account/Account";
 import { logIn } from "./store/thunks/userThunk";
 import UserAddress from "./pages/account/UserAddress";
->>>>>>> 22000fa94674e48ab7353d623f8e2a4e3416402c
 
 function App() {
   const dispatch = useDispatch();
@@ -59,10 +54,7 @@ function App() {
   const UserPages = () => (
     <div>
       <Header />
-<<<<<<< HEAD
       <Suspense>
-=======
->>>>>>> 22000fa94674e48ab7353d623f8e2a4e3416402c
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -75,19 +67,19 @@ function App() {
         <Route path="/product-detail/:productId" element={<ProductDetails />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Login />} />
-<<<<<<< HEAD
+
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/orders" element={<Order/>}/>
         <Route path="/address" element={<Address/>}/>
         <Route path="/new-address" element={<EditAddress/>} />
         <Route path="/payment" element={<Payment/>}/>
 
-      </Routes>
-        </Suspense>
-=======
+     
+
         <Route path="/address" element={<UserAddress />} />
       </Routes>
->>>>>>> 22000fa94674e48ab7353d623f8e2a4e3416402c
+        </Suspense>
+
       <Footer />
     </div>
   );
