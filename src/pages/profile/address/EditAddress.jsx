@@ -66,8 +66,8 @@ export default function EditAddress() {
         </div>
 
         <div>
-          <Form.Item name="Adresss" rules={[{ required: true }]}>
-            <Input.TextArea
+          <Form.Item name="Adresss" rules={[{ required: true}]}>
+            <Input.TextArea 
               placeholder="Adress ,House No,Building,Street*"
               className="md:!w-[38.5rem] lg:!w-[51rem]"
             />
