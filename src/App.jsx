@@ -103,8 +103,8 @@ function App() {
         <Routes>
           <Route path="/*" element={<UserPages />} />
           <Route path="/auth/*" element={<UserLogin />} />
-          <Route path="admin/*" element={<Dashboard />} />
-          <Route path="account/*" element={<Accounturl />} />
+          <Route path="/admin/*" element={<Dashboard />} />
+          <Route path="/account/*" element={<Accounturl />} />
         </Routes>
       </BrowserRouter>
     </div>
