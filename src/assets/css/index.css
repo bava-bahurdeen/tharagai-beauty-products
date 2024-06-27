@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --hind: "Hind", sans-serif;
+  --lexend: "Lexend", sans-serif;
+  --primary: #f4e9e3;
+}
+
+* {
+  font-family: var(--lexend);
+}
+body {
+  background-color: var(--primary);
+}
+
+p {
+  color: #000000b3;
+}
+.no-spinner::-webkit-outer-spin-button,
+.no-spinner::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.no-spinner {
+  -moz-appearance: textfield;
+}
+
+input[type="radio"]:checked {
+  accent-color: #7E8427;
+}
+
+/* .ant-table-thead tr th {
+  background-color: green;
+}
+
+:where(.css-dev-only-do-not-override-1paxfrs).ant-table-wrapper
+  .ant-table-thead
+  > tr
+  > th,
+:where(.css-dev-only-do-not-override-1paxfrs).ant-table-wrapper
+  .ant-table-thead
+  > tr
+  > td {
+  background-color: yellowgreen;
+} */
+/* .ant-table
+  .ant-table-container
+  .ant-table-content
+  table
+  thead.ant-table-thead
+  .ant-table-cell {
+  background-color: green;
+} */
