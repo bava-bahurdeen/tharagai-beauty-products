@@ -1,24 +1,14 @@
 import React from "react";
-<<<<<<< HEAD
 import Hero from "./Hero";
 import Ingredients from "./Ingredients";
 import BestSeller from "./BestSeller";
 import Categories from "./Categories";
-import Favorite from "./Favorite";
 import Testimonials from "./Testimonials";
 import QuestinBottom from "../../assets/components/QuestinBottom";
 
-export default function Home() {
-  return (
-    <main>
-      <Hero />
-      <Ingredients />
-      <BestSeller />
-      <Categories />
-      {/* <Favorite /> */}
-      <Testimonials />
-      <QuestinBottom />
-=======
+
+  
+  
 
 import bg2 from "../../assets/images/hero/hero.png";
 import leafBg from "../../assets/images/bg/bgLeaf.png";
@@ -61,10 +51,12 @@ const ingredientsList = [
 ];
 
 export default function Home() {
+  
   const productTypes = useSelector((state) => state.products.productTypes);
   const bestSeller = useSelector((state) => state.products.bestSeller);
   return (
     <main>
+     
       {/* Hero Section */}
       <section
         className=" relative bg-cover  bg-center bg-no-repeat w-full h-[56vh] lg:h-[90vh]"
@@ -247,7 +239,6 @@ export default function Home() {
           </div>
         </div>
       </section>
->>>>>>> 22000fa94674e48ab7353d623f8e2a4e3416402c
     </main>
   );
 }

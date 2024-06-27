@@ -44,11 +44,7 @@ export default function Addproducts() {
     };
 
     try {
-<<<<<<< HEAD
-      const response = await axiosInstance.post("/products/add-product/", arr, {
-=======
       const response = await axiosInstance.post("/products/product/", arr, {
->>>>>>> 22000fa94674e48ab7353d623f8e2a4e3416402c
         headers: {
           Authorization: `Token ${token}`,
         },

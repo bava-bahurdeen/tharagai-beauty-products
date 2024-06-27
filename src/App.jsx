@@ -8,10 +8,8 @@ import Contact from "./pages/contact/Contact";
 import ProductCategories from "./pages/categories/ProductCategories";
 import ProductDetails from "./pages/categories/ProductDetails";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts, getCarts,getBestSeller ,getProductTypes} from "./store/thunks/productThunk";
+import {  getCarts,getBestSeller ,getProductTypes} from "./store/thunks/productThunk";
 import { useEffect,lazy, Suspense } from "react";
-import { useEffect } from "react";
-
 import Cart from "./pages/cart/Cart";
 
 import Login from "./pages/users/Login";
@@ -26,10 +24,6 @@ import Account from "./pages/account/Account";
 import { logIn } from "./store/thunks/userThunk";
 
 
-import Dashboard from "./pages/admin/dashboard/Dashboard";
-import Account from "./pages/account/Account";
-import { logIn } from "./store/thunks/userThunk";
-import UserAddress from "./pages/account/UserAddress";
 
 function App() {
   const dispatch = useDispatch();
@@ -76,7 +70,7 @@ function App() {
 
      
 
-        <Route path="/address" element={<UserAddress />} />
+        {/* <Route path="/address" element={<UserAddress />} /> */}
       </Routes>
         </Suspense>
 
